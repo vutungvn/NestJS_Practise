@@ -14,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MailModule } from './systems/mail/mail.module.js';
 import { IpBlockMiddleware } from './middlewares/ip-block.middleware.js';
 import { PaymentModule } from './modules/payment/payment.module.js';
+import { PostsModule } from './modules/posts/posts.module.js';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PaymentModule } from './modules/payment/payment.module.js';
     UsersModule,
     MailModule,
     PaymentModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
