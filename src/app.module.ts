@@ -12,7 +12,7 @@ import { PrismaModule } from './systems/prisma/prisma.module.js';
 import { UsersModule } from './modules/users/users.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { MailModule } from './systems/mail/mail.module.js';
-import { AuthMiddleware } from './middlewares/auth.middleware.js';
+import { IpBlockMiddleware } from './middlewares/ip-block.middleware.js';
 
 @Module({
   imports: [
@@ -30,12 +30,6 @@ import { AuthMiddleware } from './middlewares/auth.middleware.js';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes({
-        path: 'categories',
-        version: '1',
-        method: RequestMethod.ALL,
-      });
+    consumer.apply(IpBlockMiddleware).forRoutes('*');
   }
 }
