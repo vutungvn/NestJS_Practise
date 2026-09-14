@@ -11,8 +11,10 @@ export class UsersService {
   findAll() {
     // const users = await this.prismaService.user.findMany();
     // console.log('users::', users);
+    const dbError = new Error('duplicate key value violates unique constraint');
+    (dbError as any).code = '23505';
 
-    return `This action returns all users`;
+    throw dbError;
   }
 
   findOne(id: number) {
