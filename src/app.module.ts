@@ -13,6 +13,7 @@ import { UsersModule } from './modules/users/users.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { MailModule } from './systems/mail/mail.module.js';
 import { IpBlockMiddleware } from './middlewares/ip-block.middleware.js';
+import { PaymentModule } from './modules/payment/payment.module.js';
 
 @Module({
   imports: [
@@ -24,12 +25,9 @@ import { IpBlockMiddleware } from './middlewares/ip-block.middleware.js';
     PrismaModule,
     UsersModule,
     MailModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(IpBlockMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}
